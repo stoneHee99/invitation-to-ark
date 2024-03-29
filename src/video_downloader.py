@@ -50,7 +50,6 @@ def download_video(video_element, title):
                                   title.replace(" ", "_") + ".mp4")
     response = requests.head(video_url)
     content_length = int(response.headers['Content-Length'])
-    content_type = response.headers.get('Content-Type', 'Unknown type')
 
     part_filenames = []
     tqdm_bar = tqdm(total=content_length, unit='iB', unit_scale=True)
@@ -67,9 +66,7 @@ def download_video(video_element, title):
 
     downloaded_size = sum(os.path.getsize(f) for f in part_filenames)
     if downloaded_size != content_length:
-        logging.error(f"다운로드한 크기 ({downloaded_size})가 Content-Length ({content_length})와 일치하지 않습니다.")
         print("비디오 다운로드 중 오류가 발생했습니다. 다운로드한 파일이 불완전하거나 손상될 수 있습니다.")
-        # 선택적으로 여기에서 다운로드한 부분 파일들을 삭제하여 정리할 수 있습니다.
         for part_filename in part_filenames:
             os.remove(part_filename)
         return

@@ -1,8 +1,8 @@
-from src.login import perform_login
-from src.course_selector import get_course, select_course
-from src.lecture_selector import get_lecture, select_lecture
-from src.video_downloader import get_video, download_video
-from src.alert_handler import handle_alert
+from login import perform_login
+from course_selector import get_course, select_course
+from lecture_selector import get_lecture, select_lecture
+from video_downloader import get_video, download_video
+from alert_handler import handle_alert
 
 import time
 
